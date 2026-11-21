@@ -1,0 +1,1039 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kestrel — Facebook & Meta Ads Spy Tool for Windows</title>
+<meta name="theme-color" content="#ffffff">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#ffffff;
+    --bg-subtle:#f8fafc;
+    --bg-muted:#f1f5f9;
+    --ink:#0f172a;
+    --ink-secondary:#475569;
+    --ink-muted:#94a3b8;
+    --accent:#2563eb;
+    --accent-hover:#1d4ed8;
+    --accent-soft:#eff6ff;
+    --border:#e2e8f0;
+    --radius-sm:8px;
+    --radius-md:14px;
+    --radius-lg:20px;
+    --shadow-sm:0 1px 3px rgba(15,23,42,0.05);
+    --shadow-lg:0 24px 60px -15px rgba(15,23,42,0.12);
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  h1,h2,h3,h4{
+    font-family:'Plus Jakarta Sans',sans-serif;
+    letter-spacing:-0.025em;
+    color:var(--ink);
+  }
+
+  a{color:inherit;text-decoration:none;}
+  button{font-family:inherit;cursor:pointer;}
+
+  .container{
+    max-width:1120px;
+    margin:0 auto;
+    padding:0 24px;
+  }
+
+  /* ---------- HEADER ---------- */
+  header{
+    position:sticky;
+    top:0;
+    z-index:40;
+    background:rgba(255,255,255,0.92);
+    backdrop-filter:blur(12px);
+    border-bottom:1px solid var(--border);
+  }
+  .nav{
+    height:68px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .logo{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-family:'Plus Jakarta Sans',sans-serif;
+    font-weight:800;
+    font-size:18px;
+  }
+  .logo-box{
+    width:34px;
+    height:34px;
+    border-radius:10px;
+    background:linear-gradient(135deg, #1877F2 0%, #7c3aed 100%);
+    color:#fff;
+    display:grid;
+    place-items:center;
+    box-shadow:0 6px 16px rgba(24,119,242,0.28);
+  }
+  .nav-links{
+    display:flex;
+    gap:32px;
+    font-size:14px;
+    font-weight:500;
+    color:var(--ink-secondary);
+  }
+  .nav-links a:hover{color:var(--ink);}
+
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:9px;
+    border-radius:var(--radius-sm);
+    font-weight:600;
+    font-size:14px;
+    transition:all .15s ease;
+    border:1px solid transparent;
+  }
+  .btn-primary{
+    background:var(--ink);
+    color:#fff;
+    padding:10px 18px;
+  }
+  .btn-primary:hover{
+    background:#1e293b;
+    transform:translateY(-1px);
+  }
+  .btn-lg{
+    padding:14px 24px;
+    font-size:15px;
+    border-radius:10px;
+  }
+  .btn-accent{
+    background:linear-gradient(135deg, #1877F2 0%, #4f46e5 100%);
+    color:#fff;
+    box-shadow:0 8px 22px rgba(24,119,242,0.28);
+  }
+  .btn-accent:hover{
+    filter:brightness(1.06);
+    transform:translateY(-1px);
+  }
+  .btn-ghost{
+    background:#fff;
+    color:var(--ink);
+    border-color:var(--border);
+  }
+  .btn-ghost:hover{
+    background:var(--bg-subtle);
+    border-color:#cbd5e1;
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    padding:68px 0 64px;
+    background:
+      radial-gradient(circle at 15% 15%, rgba(24,119,242,0.08), transparent 42%),
+      radial-gradient(circle at 85% 12%, rgba(225,48,108,0.07), transparent 42%),
+      linear-gradient(180deg, var(--bg-subtle) 0%, var(--bg) 100%);
+    border-bottom:1px solid var(--border);
+  }
+  .hero-top{
+    text-align:center;
+    max-width:780px;
+    margin:0 auto 42px;
+  }
+  .badge{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:6px 14px;
+    border-radius:999px;
+    background:#fff;
+    color:var(--ink);
+    font-size:12.5px;
+    font-weight:600;
+    margin-bottom:20px;
+    border:1px solid var(--border);
+    box-shadow:var(--shadow-sm);
+  }
+  .hero h1{
+    font-size:clamp(36px, 5.2vw, 56px);
+    line-height:1.08;
+    font-weight:800;
+    margin-bottom:18px;
+  }
+  .hero h1 span{
+    background:linear-gradient(135deg, #1877F2 0%, #9333ea 55%, #E1306C 100%);
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+  }
+  .hero p{
+    font-size:17px;
+    color:var(--ink-secondary);
+    max-width:580px;
+    margin:0 auto 28px;
+  }
+  .hero-actions{
+    display:flex;
+    gap:12px;
+    justify-content:center;
+    flex-wrap:wrap;
+  }
+  .hero-meta{
+    margin-top:14px;
+    font-size:12.5px;
+    color:var(--ink-muted);
+  }
+
+  /* ---------- SUPPORTED PLATFORMS LOGO STRIP ---------- */
+  .platforms-strip{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:12px;
+    margin:0 auto 38px;
+  }
+  .platform-chip{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    background:#fff;
+    border:1px solid var(--border);
+    border-radius:999px;
+    padding:7px 14px;
+    font-size:13px;
+    font-weight:600;
+    color:var(--ink);
+    box-shadow:var(--shadow-sm);
+  }
+
+  /* ---------- INTERACTIVE APP PREVIEW ---------- */
+  .app-frame{
+    background:#fff;
+    border:1px solid var(--border);
+    border-radius:var(--radius-lg);
+    box-shadow:var(--shadow-lg);
+    overflow:hidden;
+  }
+  .app-bar{
+    background:var(--bg-subtle);
+    border-bottom:1px solid var(--border);
+    padding:12px 18px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    flex-wrap:wrap;
+  }
+  .dots{display:flex;gap:6px;}
+  .dots i:nth-child(1){width:10px;height:10px;border-radius:50%;background:#f87171;display:block;}
+  .dots i:nth-child(2){width:10px;height:10px;border-radius:50%;background:#fbbf24;display:block;}
+  .dots i:nth-child(3){width:10px;height:10px;border-radius:50%;background:#34d399;display:block;}
+
+  .filter-pills{display:flex;gap:6px;flex-wrap:wrap;}
+  .filter-pill{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    padding:6px 13px;
+    border-radius:999px;
+    font-size:12.5px;
+    font-weight:600;
+    background:#fff;
+    border:1px solid var(--border);
+    color:var(--ink-secondary);
+    transition:all .15s ease;
+  }
+  .filter-pill:hover{border-color:#cbd5e1;color:var(--ink);}
+  .filter-pill.active{
+    background:linear-gradient(135deg, #1877F2, #4f46e5);
+    color:#fff;
+    border-color:transparent;
+  }
+
+  .ads-grid{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:18px;
+    padding:22px;
+    background:#fff;
+  }
+  .ad-card{
+    border:1px solid var(--border);
+    border-radius:var(--radius-md);
+    padding:16px;
+    background:#fff;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+    transition:transform .15s ease, border-color .15s ease, box-shadow .15s ease;
+  }
+  .ad-card:hover{
+    transform:translateY(-2px);
+    border-color:#cbd5e1;
+    box-shadow:0 10px 24px -12px rgba(15,23,42,0.12);
+  }
+  .ad-head{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:12px;
+  }
+  .ad-brand{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-size:13.5px;
+    font-weight:700;
+  }
+  .brand-logo-svg{
+    width:32px;
+    height:32px;
+    border-radius:9px;
+    flex:none;
+  }
+  .tag-live{
+    font-size:11px;
+    font-weight:700;
+    padding:3px 9px;
+    border-radius:999px;
+    background:#dcfce7;
+    color:#15803d;
+  }
+  .tag-hot{
+    font-size:11px;
+    font-weight:700;
+    padding:3px 9px;
+    border-radius:999px;
+    background:#fef3c7;
+    color:#b45309;
+  }
+  .tag-new{
+    font-size:11px;
+    font-weight:700;
+    padding:3px 9px;
+    border-radius:999px;
+    background:#e0e7ff;
+    color:#4338ca;
+  }
+
+  .ad-banner{
+    height:112px;
+    border-radius:10px;
+    padding:14px;
+    margin-bottom:12px;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+    color:#fff;
+    position:relative;
+    overflow:hidden;
+  }
+  .banner-amber{background:linear-gradient(135deg, #f59e0b 0%, #ea580c 100%);}
+  .banner-violet{background:linear-gradient(135deg, #4f46e5 0%, #9333ea 100%);}
+  .banner-emerald{background:linear-gradient(135deg, #059669 0%, #0284c7 100%);}
+  .banner-pill{
+    align-self:flex-start;
+    background:rgba(255,255,255,0.22);
+    backdrop-filter:blur(4px);
+    padding:2px 8px;
+    border-radius:6px;
+    font-size:10.5px;
+    font-weight:700;
+    letter-spacing:0.03em;
+    text-transform:uppercase;
+  }
+  .banner-headline{
+    font-family:'Plus Jakarta Sans',sans-serif;
+    font-size:14px;
+    font-weight:700;
+    line-height:1.25;
+  }
+
+  .ad-copy{
+    font-size:12.5px;
+    color:var(--ink-secondary);
+    margin-bottom:8px;
+  }
+  .ad-url{
+    display:flex;
+    align-items:center;
+    gap:6px;
+    font-size:11.5px;
+    font-weight:600;
+    color:var(--accent);
+    margin-bottom:10px;
+  }
+  .ad-foot{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding-top:10px;
+    border-top:1px solid var(--bg-muted);
+    font-size:12px;
+    color:var(--ink-secondary);
+  }
+  .network-icons{
+    display:flex;
+    align-items:center;
+    gap:6px;
+  }
+  .ad-foot strong{color:var(--ink);}
+
+  /* ---------- SECTIONS ---------- */
+  .section{padding:84px 0;}
+  .section-alt{
+    background:var(--bg-subtle);
+    border-top:1px solid var(--border);
+    border-bottom:1px solid var(--border);
+  }
+  .sec-head{
+    max-width:600px;
+    margin-bottom:44px;
+  }
+  .sec-head span{
+    font-size:12.5px;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:0.06em;
+    color:var(--accent);
+    display:block;
+    margin-bottom:8px;
+  }
+  .sec-head h2{
+    font-size:clamp(28px, 3.6vw, 38px);
+    line-height:1.15;
+    margin-bottom:12px;
+  }
+  .sec-head p{
+    color:var(--ink-secondary);
+    font-size:16px;
+  }
+
+  /* Features */
+  .features-grid{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:20px;
+  }
+  .feat-card{
+    padding:26px;
+    border:1px solid var(--border);
+    border-radius:var(--radius-md);
+    background:#fff;
+    transition:transform .15s ease, box-shadow .15s ease;
+  }
+  .feat-card:hover{
+    transform:translateY(-2px);
+    box-shadow:var(--shadow-sm);
+  }
+  .feat-icon{
+    width:44px;height:44px;
+    border-radius:11px;
+    display:grid;place-items:center;
+    margin-bottom:16px;
+  }
+  .ic-blue{background:#eff6ff;}
+  .ic-pink{background:#fdf2f8;}
+  .ic-emerald{background:#ecfdf5;}
+  .ic-violet{background:#f5f3ff;}
+  .ic-amber{background:#fffbeb;}
+  .ic-cyan{background:#ecfeff;}
+
+  .feat-card h3{
+    font-size:16.5px;
+    margin-bottom:8px;
+  }
+  .feat-card p{
+    font-size:14.5px;
+    color:var(--ink-secondary);
+  }
+
+  /* Setup / VHDX Steps */
+  .steps-grid{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:24px;
+  }
+  .step-card{
+    background:#fff;
+    border:1px solid var(--border);
+    border-radius:var(--radius-md);
+    padding:26px;
+  }
+  .step-num{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    width:30px;height:30px;
+    border-radius:8px;
+    color:#fff;
+    font-size:13px;
+    font-weight:700;
+    margin-bottom:16px;
+  }
+  .num-1{background:#1877F2;}
+  .num-2{background:#7c3aed;}
+  .num-3{background:#059669;}
+
+  .step-card h3{font-size:16.5px;margin-bottom:8px;}
+  .step-card p{font-size:14.5px;color:var(--ink-secondary);}
+  .step-card code{
+    background:var(--bg-muted);
+    padding:2px 6px;
+    border-radius:5px;
+    font-size:13px;
+    color:var(--ink);
+  }
+
+  .callout{
+    margin-top:24px;
+    background:#fff;
+    border:1px solid #bfdbfe;
+    border-left:4px solid #1877F2;
+    border-radius:var(--radius-md);
+    padding:20px 24px;
+    font-size:14.5px;
+    color:var(--ink-secondary);
+  }
+  .callout strong{color:var(--ink);}
+
+  /* FAQ */
+  .faq-grid{
+    display:grid;
+    grid-template-columns:repeat(2, 1fr);
+    gap:20px;
+  }
+  .faq-item{
+    padding:24px;
+    border:1px solid var(--border);
+    border-radius:var(--radius-md);
+    background:#fff;
+  }
+  .faq-item h3{font-size:15.5px;margin-bottom:6px;}
+  .faq-item p{font-size:14px;color:var(--ink-secondary);}
+
+  /* Bottom CTA */
+  .cta-box{
+    text-align:center;
+    padding:76px 24px;
+    background:
+      radial-gradient(circle at 50% 0%, rgba(24,119,242,0.08), transparent 65%),
+      var(--bg-subtle);
+    border-top:1px solid var(--border);
+  }
+  .cta-box h2{
+    font-size:clamp(28px, 3.8vw, 40px);
+    margin-bottom:12px;
+  }
+  .cta-box p{
+    color:var(--ink-secondary);
+    max-width:480px;
+    margin:0 auto 28px;
+    font-size:16px;
+  }
+
+  /* Footer */
+  footer{
+    border-top:1px solid var(--border);
+    padding:28px 0;
+    font-size:13.5px;
+    color:var(--ink-muted);
+  }
+  .foot-inner{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:16px;
+  }
+  .foot-links{display:flex;gap:24px;}
+  .foot-links a:hover{color:var(--ink);}
+
+  @media (max-width:900px){
+    .ads-grid, .features-grid, .steps-grid{grid-template-columns:1fr;}
+    .faq-grid{grid-template-columns:1fr;}
+    .nav-links{display:none;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container nav">
+    <a href="#" class="logo">
+      <span class="logo-box">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4">
+          <circle cx="11" cy="11" r="7"/><path d="m21 21-4.35-4.35"/>
+        </svg>
+      </span>
+      Kestrel
+    </a>
+    <nav class="nav-links">
+      <a href="#features">Features</a>
+      <a href="#setup">Setup</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <button type="button" class="btn btn-primary" onclick="downloadApp()">
+      <!-- Windows Logo -->
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none">
+        <path d="M2 3.5L11 2.2V11H2V3.5Z" fill="#00A4EF"/>
+        <path d="M12.2 2L22 0.6V11H12.2V2Z" fill="#7FBA00"/>
+        <path d="M2 12.2H11V21.8L2 20.5V12.2Z" fill="#00A4EF"/>
+        <path d="M12.2 12.2H22V23.4L12.2 22V12.2Z" fill="#FFB900"/>
+      </svg>
+      Download for Windows
+    </button>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="container">
+    <div class="hero-top">
+      <div class="badge">
+        <!-- Meta Infinity Logo -->
+        <svg width="18" height="12" viewBox="0 0 36 24" fill="none">
+          <path d="M10.4 4C6.3 4 3 7.3 3 11.8C3 16.3 6.2 20 10.2 20C13.1 20 15.3 18.2 18 14.3C20.7 18.2 22.9 20 25.8 20C29.8 20 33 16.3 33 11.8C33 7.3 29.7 4 25.6 4C22.6 4 20.4 6 18 9.6C15.6 6 13.4 4 10.4 4Z" stroke="#0081FB" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Meta & Facebook Ads Spy Suite · Windows
+      </div>
+      <h1>Find winning <span>Facebook Ads</span> before they saturate.</h1>
+      <p>Search millions of active Meta creatives across Facebook, Instagram & Reels, spot scaling campaigns by longevity, and download videos in one fast Windows app.</p>
+      <div class="hero-actions">
+        <button type="button" class="btn btn-accent btn-lg" onclick="downloadApp()">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none">
+            <path d="M2 3.5L11 2.2V11H2V3.5Z" fill="#fff"/>
+            <path d="M12.2 2L22 0.6V11H12.2V2Z" fill="#fff" fill-opacity="0.88"/>
+            <path d="M2 12.2H11V21.8L2 20.5V12.2Z" fill="#fff" fill-opacity="0.88"/>
+            <path d="M12.2 12.2H22V23.4L12.2 22V12.2Z" fill="#fff"/>
+          </svg>
+          Download for Windows
+        </button>
+        <a href="#setup" class="btn btn-ghost btn-lg">Installation guide</a>
+      </div>
+      <div class="hero-meta">Windows 10 & 11 (64-bit) · Instant ZIP download · No Facebook login needed</div>
+    </div>
+
+    <!-- Supported Platforms Bar with Official Brand Logos -->
+    <div class="platforms-strip" aria-label="Tracked Ad Networks and Platforms">
+      <!-- Facebook -->
+      <div class="platform-chip">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+          <circle cx="12" cy="12" r="11" fill="#1877F2"/>
+          <path d="M15.4 12.8L15.9 9.7H13V7.7C13 6.8 13.4 6 14.8 6H16V3.4C16 3.4 14.8 3.2 13.7 3.2C11.3 3.2 9.8 4.6 9.8 7.3V9.7H7.2V12.8H9.8V20.5H13V12.8H15.4Z" fill="#fff"/>
+        </svg>
+        Facebook Feed
+      </div>
+
+      <!-- Instagram -->
+      <div class="platform-chip">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+          <defs>
+            <linearGradient id="igGrad" x1="2" y1="22" x2="22" y2="2" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="#FD5949"/>
+              <stop offset="50%" stop-color="#D6249F"/>
+              <stop offset="100%" stop-color="#285AEB"/>
+            </linearGradient>
+          </defs>
+          <rect x="2" y="2" width="20" height="20" rx="6" fill="url(#igGrad)"/>
+          <circle cx="12" cy="12" r="4.2" stroke="#fff" stroke-width="1.8"/>
+          <circle cx="17.4" cy="6.6" r="1.2" fill="#fff"/>
+        </svg>
+        Instagram & Reels
+      </div>
+
+      <!-- Messenger -->
+      <div class="platform-chip">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+          <defs>
+            <linearGradient id="msgGrad" x1="12" y1="2" x2="12" y2="22" gradientUnits="userSpaceOnUse">
+              <stop stop-color="#00B2FF"/>
+              <stop offset="100%" stop-color="#006AFF"/>
+            </linearGradient>
+          </defs>
+          <path d="M12 2C6.36 2 2 6.13 2 11.7C2 14.61 3.19 17.14 5.14 18.87V22L8.08 20.38C9.31 20.72 10.63 20.9 12 20.9C17.64 20.9 22 16.77 22 11.2C22 5.63 17.64 2 12 2Z" fill="url(#msgGrad)"/>
+          <path d="M13.02 14.4L10.48 11.7L5.54 14.4L10.98 8.6L13.52 11.3L18.46 8.6L13.02 14.4Z" fill="#fff"/>
+        </svg>
+        Messenger Ads
+      </div>
+
+      <!-- Meta Audience Network -->
+      <div class="platform-chip">
+        <svg width="20" height="14" viewBox="0 0 36 24" fill="none">
+          <path d="M10.4 4C6.3 4 3 7.3 3 11.8C3 16.3 6.2 20 10.2 20C13.1 20 15.3 18.2 18 14.3C20.7 18.2 22.9 20 25.8 20C29.8 20 33 16.3 33 11.8C33 7.3 29.7 4 25.6 4C22.6 4 20.4 6 18 9.6C15.6 6 13.4 4 10.4 4Z" stroke="#0081FB" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Audience Network
+      </div>
+
+      <!-- Shopify Store Detector -->
+      <div class="platform-chip">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+          <path d="M18.6 6.2C18.5 6.1 18.3 6 18.2 6L16.3 5.9C16.1 4.4 14.8 3.2 13.3 3.2C13 3.2 12.7 3.3 12.4 3.4C12 3.1 11.5 3 11 3C9.3 3 8.1 4.8 7.7 6.3L5.6 6.9C5 7.1 4.9 7.2 4.8 7.8L3.2 20.2L15.1 22.4L20.8 21.1C20.8 21.1 18.7 6.3 18.6 6.2Z" fill="#95BF47"/>
+          <path d="M15.1 22.4L20.8 21.1L18.6 6.2C18.5 6.1 18.3 6 18.2 6L16.3 5.9L15.1 22.4Z" fill="#5E8E3E"/>
+          <path d="M12.2 9.8L11.5 11.9C10.9 11.6 10.2 11.5 9.6 11.7C8.9 11.9 8.8 12.5 8.9 12.8C9.1 13.5 10.9 13.6 11.5 15.2C12 16.6 11.3 18.1 9.8 18.5C8.5 18.9 7.3 18.5 6.8 18.1L7.4 16C8.1 16.5 8.9 16.7 9.5 16.5C10.1 16.3 10.3 15.8 10.2 15.4C10 14.7 8.5 14.7 7.8 13.2C7.2 11.9 7.9 10.4 9.5 9.9C10.5 9.6 11.5 9.6 12.2 9.8Z" fill="#fff"/>
+        </svg>
+        Shopify & Pixel Detection
+      </div>
+    </div>
+
+    <!-- Interactive Sample Feed with Facebook & Instagram Badges -->
+    <div class="app-frame" aria-label="Sample Ad Spy Interface">
+      <div class="app-bar">
+        <div class="dots"><i></i><i></i><i></i></div>
+        <div class="filter-pills" id="filterBar">
+          <button type="button" class="filter-pill active" data-filter="all">All Winning Ads</button>
+          <button type="button" class="filter-pill" data-filter="ecom">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="#1877F2"><circle cx="12" cy="12" r="10"/></svg>
+            E-Commerce
+          </button>
+          <button type="button" class="filter-pill" data-filter="saas">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="#E1306C"><rect x="2" y="2" width="20" height="20" rx="6"/></svg>
+            Software & Apps
+          </button>
+          <button type="button" class="filter-pill" data-filter="lead">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="#0081FB"><circle cx="12" cy="12" r="10"/></svg>
+            Lead Gen
+          </button>
+        </div>
+        <span style="font-size:12px;font-weight:600;color:#059669;">● Live Index Preview</span>
+      </div>
+
+      <div class="ads-grid" id="adsGrid">
+        <!-- Card 1: E-commerce -->
+        <div class="ad-card" data-cat="ecom">
+          <div>
+            <div class="ad-head">
+              <div class="ad-brand">
+                <svg class="brand-logo-svg" viewBox="0 0 36 36" fill="none">
+                  <rect width="36" height="36" rx="10" fill="url(#g1)"/>
+                  <circle cx="18" cy="18" r="7" stroke="#fff" stroke-width="2.4"/>
+                  <path d="M18 7v3M18 26v3M7 18h3M26 18h3" stroke="#fde68a" stroke-width="2.2" stroke-linecap="round"/>
+                  <defs><linearGradient id="g1" x1="0" y1="0" x2="36" y2="36"><stop stop-color="#f59e0b"/><stop offset="1" stop-color="#ea580c"/></linearGradient></defs>
+                </svg>
+                SolisGlow
+              </div>
+              <span class="tag-live">Active 38d</span>
+            </div>
+
+            <div class="ad-banner banner-amber">
+              <span class="banner-pill">Video Creative · 0:24</span>
+              <div class="banner-headline">Zero-Blue Sunset Lamp — 2x Evening Calm</div>
+            </div>
+
+            <div class="ad-copy">"Why 40,000 night owls swapped harsh LEDs for warm amber light before sleep."</div>
+            <div class="ad-url">
+              <!-- Mini Shopify Icon -->
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="#95BF47"><path d="M18.6 6.2L16.3 5.9C16.1 4.4 14.8 3.2 13.3 3.2C13 3.2 12.7 3.3 12.4 3.4C12 3.1 11.5 3 11 3C9.3 3 8.1 4.8 7.7 6.3L5.6 6.9C5 7.1 4.9 7.2 4.8 7.8L3.2 20.2L15.1 22.4L20.8 21.1L18.6 6.2Z"/></svg>
+              solisglow.shop/sunset-lamp
+            </div>
+          </div>
+          <div class="ad-foot">
+            <div class="network-icons">
+              <!-- FB Icon -->
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" fill="#1877F2"/><path d="M15.4 12.8L15.9 9.7H13V7.7C13 6.8 13.4 6 14.8 6H16V3.4C16 3.4 14.8 3.2 13.7 3.2C11.3 3.2 9.8 4.6 9.8 7.3V9.7H7.2V12.8H9.8V20.5H13V12.8H15.4Z" fill="#fff"/></svg>
+              <!-- IG Icon -->
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="6" fill="url(#igGrad)"/><circle cx="12" cy="12" r="4.2" stroke="#fff" stroke-width="1.8"/><circle cx="17.4" cy="6.6" r="1.2" fill="#fff"/></svg>
+              <span>FB + IG</span>
+            </div>
+            <strong>High Scale</strong>
+          </div>
+        </div>
+
+        <!-- Card 2: Software -->
+        <div class="ad-card" data-cat="saas">
+          <div>
+            <div class="ad-head">
+              <div class="ad-brand">
+                <svg class="brand-logo-svg" viewBox="0 0 36 36" fill="none">
+                  <rect width="36" height="36" rx="10" fill="url(#g2)"/>
+                  <path d="M10 22l6-8 4 5 6-9" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  <circle cx="26" cy="10" r="2.5" fill="#fde047"/>
+                  <defs><linearGradient id="g2" x1="0" y1="0" x2="36" y2="36"><stop stop-color="#4f46e5"/><stop offset="1" stop-color="#9333ea"/></linearGradient></defs>
+                </svg>
+                SprintPulse
+              </div>
+              <span class="tag-new">Active 54d</span>
+            </div>
+
+            <div class="ad-banner banner-violet">
+              <span class="banner-pill">Reels Hook · 0:18</span>
+              <div class="banner-headline">Turn Call Notes Into Roadmap Tasks Automatically</div>
+            </div>
+
+            <div class="ad-copy">"Stop spending 4 hours a week writing tickets after client calls. Try free."</div>
+            <div class="ad-url">
+              <!-- Mini Meta Icon -->
+              <svg width="16" height="11" viewBox="0 0 36 24" fill="none"><path d="M10.4 4C6.3 4 3 7.3 3 11.8C3 16.3 6.2 20 10.2 20C13.1 20 15.3 18.2 18 14.3C20.7 18.2 22.9 20 25.8 20C29.8 20 33 16.3 33 11.8C33 7.3 29.7 4 25.6 4C22.6 4 20.4 6 18 9.6C15.6 6 13.4 4 10.4 4Z" stroke="#0081FB" stroke-width="3.6"/></svg>
+              sprintpulse.io/instant-sync
+            </div>
+          </div>
+          <div class="ad-foot">
+            <div class="network-icons">
+              <!-- IG Icon -->
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="6" fill="url(#igGrad)"/><circle cx="12" cy="12" r="4.2" stroke="#fff" stroke-width="1.8"/><circle cx="17.4" cy="6.6" r="1.2" fill="#fff"/></svg>
+              <span>Instagram Reels</span>
+            </div>
+            <strong>Steady Spend</strong>
+          </div>
+        </div>
+
+        <!-- Card 3: Lead Gen -->
+        <div class="ad-card" data-cat="lead">
+          <div>
+            <div class="ad-head">
+              <div class="ad-brand">
+                <svg class="brand-logo-svg" viewBox="0 0 36 36" fill="none">
+                  <rect width="36" height="36" rx="10" fill="url(#g3)"/>
+                  <path d="M18 9l8 4.5v9L18 27l-8-4.5v-9L18 9Z" stroke="#fff" stroke-width="2.3" stroke-linejoin="round"/>
+                  <circle cx="18" cy="18" r="2.8" fill="#a7f3d0"/>
+                  <defs><linearGradient id="g3" x1="0" y1="0" x2="36" y2="36"><stop stop-color="#059669"/><stop offset="1" stop-color="#0284c7"/></linearGradient></defs>
+                </svg>
+                KinetixLab
+              </div>
+              <span class="tag-hot">Active 21d</span>
+            </div>
+
+            <div class="ad-banner banner-emerald">
+              <span class="banner-pill">UGC + Quiz Funnel</span>
+              <div class="banner-headline">60-Second Posture & Mobility Score Check</div>
+            </div>
+
+            <div class="ad-copy">"Sit at a desk all day? Take the 3-step mobility check and get your daily plan."</div>
+            <div class="ad-url">
+              <!-- Mini FB Icon -->
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" fill="#1877F2"/><path d="M15.4 12.8L15.9 9.7H13V7.7C13 6.8 13.4 6 14.8 6H16V3.4C16 3.4 14.8 3.2 13.7 3.2C11.3 3.2 9.8 4.6 9.8 7.3V9.7H7.2V12.8H9.8V20.5H13V12.8H15.4Z" fill="#fff"/></svg>
+              kinetixlab.co/assessment
+            </div>
+          </div>
+          <div class="ad-foot">
+            <div class="network-icons">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" fill="#1877F2"/><path d="M15.4 12.8L15.9 9.7H13V7.7C13 6.8 13.4 6 14.8 6H16V3.4C16 3.4 14.8 3.2 13.7 3.2C11.3 3.2 9.8 4.6 9.8 7.3V9.7H7.2V12.8H9.8V20.5H13V12.8H15.4Z" fill="#fff"/></svg>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 2C6.36 2 2 6.13 2 11.7C2 14.61 3.19 17.14 5.14 18.87V22L8.08 20.38C9.31 20.72 10.63 20.9 12 20.9C17.64 20.9 22 16.77 22 11.2C22 5.63 17.64 2 12 2Z" fill="url(#msgGrad)"/><path d="M13.02 14.4L10.48 11.7L5.54 14.4L10.98 8.6L13.52 11.3L18.46 8.6L13.02 14.4Z" fill="#fff"/></svg>
+              <span>FB + Messenger</span>
+            </div>
+            <strong>Rising Fast</strong>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="features">
+  <div class="container">
+    <div class="sec-head">
+      <span>Capabilities</span>
+      <h2>Full Meta ecosystem visibility on your desktop.</h2>
+      <p>Track ads across Facebook, Instagram, Messenger, and Audience Network, export videos in 1 click, and inspect competitor funnels.</p>
+    </div>
+
+    <div class="features-grid">
+      <div class="feat-card">
+        <div class="feat-icon ic-blue">
+          <!-- Facebook Official Color Logo -->
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+            <circle cx="12" cy="12" r="11" fill="#1877F2"/>
+            <path d="M15.4 12.8L15.9 9.7H13V7.7C13 6.8 13.4 6 14.8 6H16V3.4C16 3.4 14.8 3.2 13.7 3.2C11.3 3.2 9.8 4.6 9.8 7.3V9.7H7.2V12.8H9.8V20.5H13V12.8H15.4Z" fill="#fff"/>
+          </svg>
+        </div>
+        <h3>Facebook Feed & Video Spy</h3>
+        <p>Filter millions of Facebook desktop & mobile ads by keyword, CTA button, active runtime, country, and language.</p>
+      </div>
+
+      <div class="feat-card">
+        <div class="feat-icon ic-pink">
+          <!-- Instagram Official Color Logo -->
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+            <rect x="2" y="2" width="20" height="20" rx="6" fill="url(#igGrad)"/>
+            <circle cx="12" cy="12" r="4.2" stroke="#fff" stroke-width="1.8"/>
+            <circle cx="17.4" cy="6.6" r="1.2" fill="#fff"/>
+          </svg>
+        </div>
+        <h3>Instagram Stories & Reels</h3>
+        <p>Uncover viral vertical UGC hooks, Reels transitions, and Stories creatives driving high-ROAS traffic.</p>
+      </div>
+
+      <div class="feat-card">
+        <div class="feat-icon ic-emerald">
+          <!-- Shopify Official Color Logo -->
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+            <path d="M18.6 6.2C18.5 6.1 18.3 6 18.2 6L16.3 5.9C16.1 4.4 14.8 3.2 13.3 3.2C13 3.2 12.7 3.3 12.4 3.4C12 3.1 11.5 3 11 3C9.3 3 8.1 4.8 7.7 6.3L5.6 6.9C5 7.1 4.9 7.2 4.8 7.8L3.2 20.2L15.1 22.4L20.8 21.1C20.8 21.1 18.7 6.3 18.6 6.2Z" fill="#95BF47"/>
+            <path d="M15.1 22.4L20.8 21.1L18.6 6.2C18.5 6.1 18.3 6 18.2 6L16.3 5.9L15.1 22.4Z" fill="#5E8E3E"/>
+            <path d="M12.2 9.8L11.5 11.9C10.9 11.6 10.2 11.5 9.6 11.7C8.9 11.9 8.8 12.5 8.9 12.8C9.1 13.5 10.9 13.6 11.5 15.2C12 16.6 11.3 18.1 9.8 18.5C8.5 18.9 7.3 18.5 6.8 18.1L7.4 16C8.1 16.5 8.9 16.7 9.5 16.5C10.1 16.3 10.3 15.8 10.2 15.4C10 14.7 8.5 14.7 7.8 13.2C7.2 11.9 7.9 10.4 9.5 9.9C10.5 9.6 11.5 9.6 12.2 9.8Z" fill="#fff"/>
+          </svg>
+        </div>
+        <h3>Shopify & Store Detection</h3>
+        <p>Reveal destination URLs, detect Shopify/WooCommerce stores, and analyze competitor product pages instantly.</p>
+      </div>
+
+      <div class="feat-card">
+        <div class="feat-icon ic-violet">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7c3aed" stroke-width="2.2">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
+          </svg>
+        </div>
+        <h3>One-Click HD Video Export</h3>
+        <p>Download clean MP4 ad videos, carousels, and ad copy directly to your PC to build swipe files and creative briefs.</p>
+      </div>
+
+      <div class="feat-card">
+        <div class="feat-icon ic-amber">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#d97706" stroke-width="2.2">
+            <path d="M3 17l6-6 4 4 8-8"/><path d="M17 7h4v4"/>
+          </svg>
+        </div>
+        <h3>Longevity & Scale Signals</h3>
+        <p>Spot ads running continuously for weeks—a strong sign that the creative is profitable and scaling.</p>
+      </div>
+
+      <div class="feat-card">
+        <div class="feat-icon ic-cyan">
+          <!-- Messenger Logo -->
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+            <path d="M12 2C6.36 2 2 6.13 2 11.7C2 14.61 3.19 17.14 5.14 18.87V22L8.08 20.38C9.31 20.72 10.63 20.9 12 20.9C17.64 20.9 22 16.77 22 11.2C22 5.63 17.64 2 12 2Z" fill="url(#msgGrad)"/>
+            <path d="M13.02 14.4L10.48 11.7L5.54 14.4L10.98 8.6L13.52 11.3L18.46 8.6L13.02 14.4Z" fill="#fff"/>
+          </svg>
+        </div>
+        <h3>Messenger & Lead Ads</h3>
+        <p>Discover Click-to-Messenger bots, instant lead forms, and high-converting local & B2B acquisition funnels.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-alt" id="setup">
+  <div class="container">
+    <div class="sec-head">
+      <span>Installation</span>
+      <h2>Get running on Windows in 3 steps.</h2>
+      <p>Once your download finishes, follow these steps to open the application.</p>
+    </div>
+
+    <div class="steps-grid">
+      <div class="step-card">
+        <span class="step-num num-1">1</span>
+        <h3>Extract the archive</h3>
+        <p>Unzip the downloaded archive and extract the <code>.vhdx</code> container file to a folder on your PC.</p>
+      </div>
+      <div class="step-card">
+        <span class="step-num num-2">2</span>
+        <h3>Mount the VHDX</h3>
+        <p>Double-click the <code>.vhdx</code> file to mount it as a virtual drive, then open the drive and enter its folder.</p>
+      </div>
+      <div class="step-card">
+        <span class="step-num num-3">3</span>
+        <h3>Launch the app</h3>
+        <p>Double-click the executable inside the folder to open Kestrel and start exploring ads.</p>
+      </div>
+    </div>
+
+    <div class="callout">
+      <strong>After launching:</strong> Click <strong>Start</strong>, choose the trial plan, select a server location, and enable the remaining options to begin browsing.
+    </div>
+  </div>
+</section>
+
+<section class="section" id="faq">
+  <div class="container">
+    <div class="sec-head">
+      <span>FAQ</span>
+      <h2>Common questions</h2>
+    </div>
+
+    <div class="faq-grid">
+      <div class="faq-item">
+        <h3>Do I need to log in with my Facebook account?</h3>
+        <p>No. You don't need to link your personal profile or ad account to search and inspect ads.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Which versions of Windows are supported?</h3>
+        <p>Kestrel is built for 64-bit versions of Windows 10 and Windows 11.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Can I save ads for later reference?</h3>
+        <p>Yes. You can bookmark campaigns and export creatives locally so your team can review hooks and angles anytime.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Why isn't the VHDX mounting automatically?</h3>
+        <p>Make sure the archive is fully extracted first—Windows cannot mount a virtual disk directly from inside a compressed ZIP.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="cta-box">
+  <div class="container">
+    <h2>Ready to research smarter?</h2>
+    <p>Download Kestrel for Windows and start exploring active Facebook & Meta creatives in minutes.</p>
+    <button type="button" class="btn btn-accent btn-lg" onclick="downloadApp()">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none">
+        <path d="M2 3.5L11 2.2V11H2V3.5Z" fill="#fff"/>
+        <path d="M12.2 2L22 0.6V11H12.2V2Z" fill="#fff" fill-opacity="0.88"/>
+        <path d="M2 12.2H11V21.8L2 20.5V12.2Z" fill="#fff" fill-opacity="0.88"/>
+        <path d="M12.2 12.2H22V23.4L12.2 22V12.2Z" fill="#fff"/>
+      </svg>
+      Download for Windows
+    </button>
+  </div>
+</div>
+
+<footer>
+  <div class="container foot-inner">
+    <div class="logo" style="font-size:15px;">
+      <span class="logo-box" style="width:26px;height:26px;border-radius:7px;">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4">
+          <circle cx="11" cy="11" r="7"/><path d="m21 21-4.35-4.35"/>
+        </svg>
+      </span>
+      Kestrel
+    </div>
+    <div class="foot-links">
+      <a href="#features">Features</a>
+      <a href="#setup">Setup</a>
+      <a href="#faq">FAQ</a>
+    </div>
+    <div>© 2026 Kestrel. All rights reserved.</div>
+  </div>
+</footer>
+
+<script>
+  function downloadApp(){
+    // Remplace par ton lien de téléchargement du ZIP
+    window.location.href = "https://lequipe.fr";
+  }
+
+  // Filtre interactif sur l'aperçu des pubs
+  const pills = document.querySelectorAll('.filter-pill');
+  const cards = document.querySelectorAll('.ad-card');
+
+  pills.forEach(pill => {
+    pill.addEventListener('click', () => {
+      pills.forEach(p => p.classList.remove('active'));
+      pill.classList.add('active');
+      const filter = pill.dataset.filter;
+
+      cards.forEach(card => {
+        if (filter === 'all' || card.dataset.cat === filter) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    });
+  });
+</script>
+
+</body>
+</html>
